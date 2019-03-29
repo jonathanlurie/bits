@@ -27,6 +27,8 @@
 
   <!-- Some style import -->
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet"> <!-- font-family: 'Lora', serif; -->
+
 
   <link rel="stylesheet" href="https://use.typekit.net/lmf8wui.css">
   <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i" rel="stylesheet">
@@ -56,6 +58,19 @@
     /* font-weight: 500; */
   }
 
+
+  .site-title {
+    width: 200px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    text-transform: lowercase;
+  }
+
   .content h1 {
     margin-top: 60px;
     margin-bottom: 0px;
@@ -83,14 +98,9 @@
 
 
   .content {
-    /* font-family: 'EB Garamond', serif; */
-    /* font-family: miller-text, serif;
-    font-size: 20px;
-    color: #383838; */
-
     font-family: calluna, serif;
     font-size: 20px;
-    font-weight: 300;
+    color: #2b2b2b;
 
   }
 
@@ -120,7 +130,6 @@
     min-height:100%;
     position:relative;
     background: #FFF;
-    padding-top: 40px;
   }
 
   #top-menu {
@@ -170,12 +179,11 @@
   }
 
   #header-logo {
-    width: 100px;
+    width: 200px;
     left: 0;
     right: 0;
     top: 0;
     margin: auto;
-    border: solid 3px #000;
   }
 
   #header-logo  img {
@@ -192,6 +200,11 @@
     text-decoration: none;
   }
 
+  .content p:first-child
+   {
+    text-indent: 45px;
+  }
+
   .current-menu-item {
     border-bottom: solid 1px;
   }
@@ -206,6 +219,7 @@
     margin-bottom: 10px;
     /*display: inline-flex;*/
     position: relative;
+    border-bottom: solid #18FFB2 6px;
   }
 
 
@@ -306,17 +320,14 @@
 
   .page-header-nocover {
     position: relative;
-    height: 120px;
+    margin: 45px 0px;
   }
 
   .page-title {
-    height: 100%;
     width: 100%;
-    position: absolute;
   }
 
   .the-title-text {
-    position: absolute;
     right: 0;
     left: 0;
     top: 0;
@@ -325,7 +336,7 @@
     width: fit-content;
     height: fit-content;
     font-family: 'Playfair Display', serif;
-    font-size: 70px;
+    font-size: 50px;
   }
 
   .page-cover {
@@ -348,18 +359,8 @@
 
 
   .article-meta {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: fit-content;
-    margin-bottom: 70px;
-    color: #ffffff;
-    z-index: 1;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
-    font-weight: 300;
+    margin: 20px;
   }
 
   .article-meta .tag {
@@ -382,21 +383,22 @@
     width: 100vw;
     min-height: 200px;
     margin-top: 5px;
-    background: #222;
+    background: #00ffa1;
     position:absolute;
     bottom:0;
     padding-top: 20px;
-    color: #FFF;
+    color: #000;
     font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
   }
 
   #footer > * {
-    opacity: 0.3;
+    opacity: 0.6;
   }
 
   #footer-logo {
     width: 100px;
-    border: solid 3px #fff;
   }
 
   #footer-logo  img {
@@ -409,7 +411,7 @@
   }
 
   #footer-text a {
-    color: #FFF;
+    color: #000;
     text-decoration: none;
   }
 
@@ -419,7 +421,7 @@
   }
 
   #footer-menu a {
-    color: #FFF;
+    color: #000;
     text-decoration: none;
   }
 
@@ -477,6 +479,23 @@
     }
 
 
+    #thin {
+      background: #18FFB2;
+      width: 100%;
+      height: 5px;
+    }
+
+    #subtitle {
+      width: 100%;
+      text-align: right;
+      margin-top: 0px;
+      font-weight: 400;
+      text-transform: uppercase;
+      font-size: 18px;
+      color: #18FFB2;
+      position: absolute;
+    }
+
   @media screen and (max-width: 1000px) {
     #header-logo {
       width: 140px;
@@ -513,15 +532,21 @@
 
   <script id="thepress-template" type="text/x-handlebars-template">
     <div id="container">
+
+      <div id="subtitle">{{site.subtitle}}</div>
+      <div id="thin"></div>
+
       <div id="main" class="main-column">
 
         <div id="header">
+
 
           <div id="header-logo">
             <a href="#">
             <img src="{{site.logo}}"/>
             </a>
           </div>
+
 
 
           <!-- The menu -->
@@ -546,24 +571,17 @@
 
 
         {{#if article}}
-          {{#if content.metadata.cover}}
-            <div class="page-header">
-              <div class="page-cover" style="background: url({{content.metadata.cover}}) no-repeat center center / cover;">
-              </div>
-              <div class="page-title darker-bg">
-                <div class="the-title-text white-text">{{content.metadata.title}}</div>
-              </div>
-              <div class="article-meta">
-                {{content.metadata.author}} – {{content.metadata.date}}
-              </div>
-            </div>
-          {{else}}
+
             <div class="page-header-nocover">
               <div class="page-title">
                 <div class="the-title-text black-text">{{content.metadata.title}}</div>
               </div>
+              <div class="article-meta">
+                {{content.metadata.author}} – {{content.metadata.date}}
+                <p>* * *</p>
+              </div>
             </div>
-          {{/if}}
+
           <div class="content">
             {{{content.body}}}
           </div>
@@ -662,14 +680,11 @@
         <div class="main-column  relative-positioner">
           <div class="inline-flexer">
             <div id="footer-logo">
-              <a href="https://github.com/jonathanlurie/thepress">
               <img src="{{site.logoAlternative}}"/>
-              </a>
             </div>
             <div id="footer-text">
-              {{site.title}},<br>
-              {{site.subtitle}}<br><br>
-              <a href="https://github.com/jonathanlurie/thepress">Fork it on GitHub.</a>
+              {{site.subtitle}}<br>
+              <a href="https://github.com/jonathanlurie/thepress">Made with <span style="font-family: 'Playfair Display', serif;">The Press</span></a>
             </div>
             <div id="footer-menu">
               <ul>

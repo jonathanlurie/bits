@@ -2,7 +2,7 @@ Follow me on Twitter [@jonathanlurie](https://twitter.com/jonathanlurie) and hav
 
 <style>
   input, textarea {
-    border: solid 1px #ccc;
+    border: solid 1px #18FFB2;
     font-size: 20px;
     padding: 8px;
     outline: none;
@@ -29,12 +29,13 @@ Follow me on Twitter [@jonathanlurie](https://twitter.com/jonathanlurie) and hav
   #contact-form input[type="submit"] {
     width: 100%;
     transition: all 0.2s;
+    color: #929292;
   }
 
   #contact-form input[type="submit"]:hover {
-    background: #000;
+    background: #18FFB2;
     color: #FFF;
-    border-color: #000;
+    border-color: #18FFB2;
   }
 
 
