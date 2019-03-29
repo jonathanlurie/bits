@@ -1,0 +1,695 @@
+<html>
+<head>
+  <title>The Press</title>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.png">
+
+  <!-- Generic meta -->
+  <meta name="description" content="A static website non-generator with no install step.">
+  <meta name="keywords" content="site-generator,JavaScript">
+  <meta name="author" content="Jonathan Lurie">
+
+  <!-- Facebook meta -->
+  <meta property="og:title" content="The Press"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:image" content="https://thepress.jnth.io/assets/logo-large.png"/>
+  <meta property="og:site_name" content="The Press"/>
+  <meta property="og:description" content="A static website non-generator with no install step."/>
+
+  <!-- Twitter meta -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@jonathanlurie" />
+  <meta name="twitter:title" content="The Press" />
+  <meta name="twitter:description" content="A static website non-generator with no install step." />
+  <meta name="twitter:image" content="https://thepress.jnth.io/assets/logo-large.png" />
+
+  <meta name="theme-color" content="#222">
+
+  <!-- Some style import -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.typekit.net/lmf8wui.css">
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,500,500i" rel="stylesheet">
+
+
+  <link href="css/highlight-styles.css" rel="stylesheet">
+
+  <style>
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    text-align: justify;
+    background: #222;
+  }
+
+  pre {
+    background: #00000008;
+    padding: 15px;
+    border-left: #00000017 8px solid;
+    overflow-y: scroll;
+  }
+
+  strong, b {
+    /* font-weight: 500; */
+  }
+
+  .content h1 {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+
+  .content h2 {
+    margin-top: 60px;
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+
+  .content h3 {
+    margin-top: 40px;
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+
+
+  .content h4 {
+    margin-top: 40px;
+    margin-bottom: 0px;
+    font-weight: 400;
+  }
+
+
+  .content {
+    /* font-family: 'EB Garamond', serif; */
+    /* font-family: miller-text, serif;
+    font-size: 20px;
+    color: #383838; */
+
+    font-family: calluna, serif;
+    font-size: 20px;
+    font-weight: 300;
+
+  }
+
+  .content :not(pre) > code {
+    font-size: 17px;
+    background: #00000008;
+    color: #000000b5;
+    padding: 0 5px;
+    border-radius: 2px;
+  }
+
+  .content pre > code {
+    font-size: 16px;
+  }
+
+
+  blockquote {
+    border-top: solid 1px #00000000;
+    border-bottom: solid 1px #00000021;
+    background: #00000005;
+    padding: 0px 20px;
+    margin: 0;
+    color: #000000b5;
+  }
+
+  #container {
+    min-height:100%;
+    position:relative;
+    background: #FFF;
+    padding-top: 40px;
+  }
+
+  #top-menu {
+    margin: 50px auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  #top-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #top-menu li {
+    float: left;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding-bottom: 5px;
+  }
+
+  #top-menu a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  #top-menu a:hover {
+    opacity: 0.5;
+  }
+
+  #main {
+    padding-bottom:300px; /* so that it's not hidden by the footer */
+  }
+
+  .main-column {
+    width: 60vw;
+    margin-left: 20vw;
+  }
+
+  .main-column * {
+    max-width: 100%;
+  }
+
+  #header-logo {
+    width: 100px;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+    border: solid 3px #000;
+  }
+
+  #header-logo  img {
+    width: 100%;
+  }
+
+  #header {
+    margin-top: 40px;
+  }
+
+
+  .content a {
+    color: #888;
+    text-decoration: none;
+  }
+
+  .current-menu-item {
+    border-bottom: solid 1px;
+  }
+
+  .article-list {
+    width: 100%;
+  }
+
+  .article-list-elem {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 10px;
+    /*display: inline-flex;*/
+    position: relative;
+  }
+
+
+  .article-list-elem .cover {
+    height: 100%;
+    width: 100%;
+    /*margin-right: 15px;*/
+    position: absolute;
+    z-index: 1;
+  }
+
+  .article-list-elem .info {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: #00000045;
+    color: white;
+    z-index: 2;
+    transition: all 0.2s;
+  }
+
+  .article-list-elem .info:hover {
+    background: #00000000;
+  }
+
+  .article-list-elem > .info > :first-child {
+    margin-top: 40px;
+  }
+
+  .article-list-elem > .info > * {
+    margin-left: 25px;
+    margin-right: 25px;
+
+  }
+
+  .article-list-elem .title {
+    font-family: 'Playfair Display', serif;
+    text-decoration: none;
+    color: inherit;
+    font-size: 40px;
+  }
+
+  .article-list-elem .title a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .article-list-elem .author {
+    font-weight: 300;
+    color: #ffffff8c;
+  }
+
+  .article-list-elem .date{
+    font-weight: 300;
+    color: #ffffff8c;
+  }
+
+  .article-list-elem .excerpt {
+    font-weight: 300;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 40px;
+    width: 55%;
+    text-align: left;
+  }
+
+  .article-list-elem .tag-list {
+    display: inline-flex;
+    position: absolute;
+    margin-bottom: 40px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .article-list-elem .tag-list .tag {
+    margin-left: 10px;
+    background: #00000066;
+    color: #ffffffcf;
+    padding: 3px 7px;
+    margin-bottom: -4px;
+  }
+
+  .article-list-elem .tag-list .tag a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .article-list-elem .tag-list .tag a:hover {
+    color: #FFF;
+  }
+
+  .page-header {
+    height: 300px;
+    margin-bottom: 25px;
+    position: relative;
+  }
+
+  .page-header-nocover {
+    position: relative;
+    height: 120px;
+  }
+
+  .page-title {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .the-title-text {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Playfair Display', serif;
+    font-size: 70px;
+  }
+
+  .page-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .darker-bg {
+    background: #00000033;
+  }
+
+  .white-text {
+    color: #FFF;
+  }
+
+  .black-text {
+    color: #000;
+  }
+
+
+  .article-meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: fit-content;
+    margin-bottom: 70px;
+    color: #ffffff;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  .article-meta .tag {
+    margin-left: 10px;
+    background: #0000009e;
+    color: #ffffff;
+    padding: 3px 7px;
+    margin-bottom: -4px;
+  }
+
+  .inline-flexer {
+    display: inline-flex;
+  }
+
+  .relative-positioner  {
+    position: relative;
+  }
+
+  #footer {
+    width: 100vw;
+    min-height: 200px;
+    margin-top: 5px;
+    background: #222;
+    position:absolute;
+    bottom:0;
+    padding-top: 20px;
+    color: #FFF;
+    font-weight: 300;
+  }
+
+  #footer > * {
+    opacity: 0.3;
+  }
+
+  #footer-logo {
+    width: 100px;
+    border: solid 3px #fff;
+  }
+
+  #footer-logo  img {
+    width: 100%;
+  }
+
+  #footer-text {
+    margin: auto;
+    margin-left: 10px;
+  }
+
+  #footer-text a {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  #footer-menu {
+    position: absolute;
+    right: 0;
+  }
+
+  #footer-menu a {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  #footer a{
+    transition: all 0.2s;
+  }
+
+  #footer a:hover {
+    color: #999;
+  }
+
+
+  #footer-menu ul {
+    list-style-type: none;
+    text-align: right;
+    margin-top: 0;
+  }
+
+  #pagination-control {
+    width: 100%;
+    height: 50px;
+    position: relative;
+    margin-top: 30px;
+  }
+
+
+    #arrow-left {
+      position: absolute;
+      left: 0;
+      opacity: 0.2;
+      transition: all 0.2s;
+    }
+
+    #arrow-left:hover {
+      opacity: 1;
+    }
+
+    #arrow-left img {
+      height: 100%;
+    }
+
+    #arrow-right {
+      position: absolute;
+      right: 0;
+      opacity: 0.2;
+      transition: all 0.2s;
+    }
+
+    #arrow-right:hover {
+      opacity: 1;
+    }
+
+    #arrow-right img {
+      height: 100%;
+    }
+
+
+  @media screen and (max-width: 1000px) {
+    #header-logo {
+      width: 140px;
+    }
+
+    #footer * {
+      font-size: large;
+    }
+
+    .main-column {
+      width: 90vw;
+      margin-left: 5vw;
+    }
+
+    #top-menu li {
+      font-size: larger;
+    }
+
+    .article-list-elem .excerpt {
+      font-size: large;
+    }
+
+    .content {
+      font-size: larger;
+    }
+
+    .content pre > code {
+      font-size: larger;
+    }
+  }
+
+
+  </style>
+
+  <script id="thepress-template" type="text/x-handlebars-template">
+    <div id="container">
+      <div id="main" class="main-column">
+
+        <div id="header">
+
+          <div id="header-logo">
+            <a href="#">
+            <img src="{{site.logo}}"/>
+            </a>
+          </div>
+
+
+          <!-- The menu -->
+          <div id="top-menu">
+            <ul>
+              {{#ifCond article '||' list}}
+                <li class="current-menu-item"><a href="#">Articles<a></li>
+              {{else}}
+                <li><a href="#">Articles</a></li>
+              {{/ifCond}}
+
+              {{#each menu}}
+                {{#sameString this.id ../content.metadata.id}}
+                  <li class="current-menu-item"><a href={{this.link}}>{{this.title}}</a></li>
+                {{else}}
+                  <li><a href={{this.link}}>{{this.title}}</a></li>
+                {{/sameString}}
+              {{/each}}
+            </ul>
+          </div>
+        </div> <!-- header -->
+
+
+        {{#if article}}
+          {{#if content.metadata.cover}}
+            <div class="page-header">
+              <div class="page-cover" style="background: url({{content.metadata.cover}}) no-repeat center center / cover;">
+              </div>
+              <div class="page-title darker-bg">
+                <div class="the-title-text white-text">{{content.metadata.title}}</div>
+              </div>
+              <div class="article-meta">
+                {{content.metadata.author}} – {{content.metadata.date}}
+              </div>
+            </div>
+          {{else}}
+            <div class="page-header-nocover">
+              <div class="page-title">
+                <div class="the-title-text black-text">{{content.metadata.title}}</div>
+              </div>
+            </div>
+          {{/if}}
+          <div class="content">
+            {{{content.body}}}
+          </div>
+        {{/if}}
+
+
+        {{#if page}}
+          {{#if content.metadata.cover}}
+            <div class="page-header">
+              <div class="page-cover" style="background: url({{content.metadata.cover}}) no-repeat center center / cover;">
+              </div>
+              <div class="page-title darker-bg">
+                <div class="the-title-text white-text">{{content.metadata.title}}</div>
+              </div>
+            </div>
+          {{else}}
+            <div class="page-header-nocover">
+              <div class="page-title">
+                <div class="the-title-text black-text">{{content.metadata.title}}</div>
+              </div>
+            </div>
+          {{/if}}
+          <div class="content">
+            {{{content.body}}}
+          </div>
+        {{/if}}
+
+
+        {{#if list}}
+          <div class="article-list">
+          {{#each content.articlesMeta}}
+            <div class="article-list-elem">
+
+              <div class="cover" style="background: url({{this.cover}}) no-repeat center center / cover;"></div>
+
+              <div class="info" onclick="window.location='{{this.link}}';">
+                <div class="date">{{this.date}}</div>
+                <div class="title"><a href="{{this.link}}">{{this.title}}</a></div>
+                <div class="author">By {{this.author}}</div>
+                <div class="excerpt">{{this.excerpt}}</div>
+                <div class="tag-list">
+                  {{#each this.tags}}
+                  <div class="tag"><a href="{{../../site.tagRoute}}{{this}}">{{this}}</a></div>
+                  {{/each}}
+                </div>
+              </div>
+
+            </div>
+          {{/each}}
+          </div>
+
+          <!-- arrow for pagination -->
+          <div id="pagination-control">
+            {{#if content.prev}}
+              <div id="arrow-left">
+                <a href="{{content.prev}}" title="page {{content.prevIndex}}"><img src="assets/arrow_l.png"/></a>
+              </div>
+            {{/if}}
+            {{#if content.next}}
+              <div id="arrow-right">
+                <a href="{{content.next}}" title="page {{content.nextIndex }} "><img src="assets/arrow_r.png"/></a>
+              </div>
+            {{/if}}
+          </div>
+
+
+        {{/if}}
+
+
+        {{#if tagList}}
+          <div class="article-list">
+          {{#each content.articlesMeta}}
+            <div class="article-list-elem">
+              <div class="cover" style="background: url({{this.cover}}) no-repeat center center / cover;"></div>
+
+              <div class="info" onclick="window.location='{{this.link}}';">
+                <div class="date">{{this.date}}</div>
+                <div class="title"><a href="{{this.link}}">{{this.title}}</a></div>
+                <div class="author">By {{this.author}}</div>
+                <div class="excerpt">{{this.excerpt}}</div>
+                <div class="tag-list">
+                  {{#each this.tags}}
+                  <div class="tag"><a href="{{../../site.tagRoute}}{{this}}">{{this}}</a></div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          </div>
+        {{/if}}
+
+      </div> <!-- main -->
+
+
+      <div id="footer">
+        <div class="main-column  relative-positioner">
+          <div class="inline-flexer">
+            <div id="footer-logo">
+              <a href="https://github.com/jonathanlurie/thepress">
+              <img src="{{site.logoAlternative}}"/>
+              </a>
+            </div>
+            <div id="footer-text">
+              {{site.title}},<br>
+              {{site.subtitle}}<br><br>
+              <a href="https://github.com/jonathanlurie/thepress">Fork it on GitHub.</a>
+            </div>
+            <div id="footer-menu">
+              <ul>
+                  <li><a href="#">Articles</a></li>
+                {{#each menu}}
+                  <li><a href={{this.link}}>{{this.title}}</a></li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- container -->
+  </script>
+
+
+  <!-- MUST be the last thing in <head> -->
+  <script src="https://unpkg.com/thepress@0.1.1/dist/thepress.min.js"></script>
+</head>
+<body>
+</body>
+</html>
